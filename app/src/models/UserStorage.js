@@ -2,7 +2,7 @@
 
 class UserStorage {
   static #users = {
-	  id: ['malthael', '나개발', '김팀장'],
+	  id: ['hafuture', '나개발', '김팀장'],
 	  password: ['1234', '1234', '123456'],
     name: ['해퓨쳐', '나개발', '김팅장장'],
   };
@@ -17,6 +17,17 @@ class UserStorage {
 		}, {});
     console.log(newUsers)
 		return newUsers;
+  }
+
+  static getUserInfo(id) {
+    const users = this.#users;
+    const idx = users.id.indexOf(id);
+    const userKeys = Object.keys(users); // => [id, password, name]
+    const userInfo = userKeys.reduce((newUser, info) => {
+      newUser[info] = users[info][idx];
+      return newUser;
+    }, {});
+    return userInfo;
   }
 }
 
